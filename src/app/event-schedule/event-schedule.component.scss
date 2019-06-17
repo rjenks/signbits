@@ -1,0 +1,108 @@
+$red: #BD3A3F;
+$green: #73A744;
+$blue: #302A4C;
+$purple: #4E1F4C;
+$black: #181527;
+$turquoise: #25BDB5 ;
+$pink: #EE5987;
+$maroon: #562030;
+
+
+div.eventschedule {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    font-family: sans-serif;
+
+    background: url('/assets/wavepattern.svg');
+
+    .logo {
+        position: absolute;
+        left: 1vw;
+        width: 33vw;
+        top: 1vh;
+        height: 10vh;
+        img {
+            object-fit: contain;
+            width: 33vw;
+            height: 10vh; 
+            object-position: 0 50%;
+        }
+    }
+
+    .title {
+        position: absolute;
+        left: 34vw;
+        right: 0;
+        top: 2.5vh;
+        height: 7.5vh;
+        font-size: 7vh;
+        text-align: center;
+        padding-right: 1vw;
+        color: white;
+    }
+
+    .schedule {
+        color: #AAA;
+        position: absolute;
+        left: 0;
+        top: 12vh;
+        height: 90vh;
+        width: 100vw;
+        font-size: 1.5vh;
+        overflow: hidden;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                position: relative;
+                margin-bottom: 0.2em;
+
+                .time {
+                    position: absolute;
+                    top: 0;
+                    left: 1vw;
+                    width: 20em;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+                .schedule_label {
+                    position: absolute;
+                    top: 0;
+                    left: 11em;
+                    width: 4em;
+                    white-space: nowrap;
+                }
+                .name {
+                    position: relative;
+                    top: 0;
+                    left: 15em;
+                    width: calc(100vw - 15em);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+
+            li.highlight {
+                color: white;
+                font-weight: bold;
+            }
+        }
+    }
+    .whoami {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 0.5em;
+        font-size: 1.25vh;
+        color: #555;
+        text-align: right;
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "manifest_version": 2,
+    "name": "Signbits",
+    "short_name": "Digital Schedule Signage",
+    "description": "Displays an event schedule with data retrieved from a REST API",
+    "version": "1.0.13",
+    "author": "Rob Jenks @Willshaper",
+    "icons": {
+        "16": "assets/icon16.png",
+        "32": "assets/icon32.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+    },
+    "permissions": [
+        "<all_urls>",
+        "*://*/*",
+        "power",
+        "storage"
+    ],
+    "app": {
+        "background": {
+        "scripts": ["background.js"]
+        }
+    },
+    "minimum_chrome_version": "67",
+    "kiosk_enabled": true
+}

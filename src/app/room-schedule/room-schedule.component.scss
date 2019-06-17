@@ -1,0 +1,111 @@
+$red: #BD3A3F;
+$green: #73A744;
+$blue: #302A4C;
+$purple: #4E1F4C;
+$black: #181527;
+$turquoise: #25BDB5 ;
+$pink: #EE5987;
+$maroon: #562030;
+
+
+div.eventschedule {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    font-family: sans-serif;
+
+    background: url('/assets/wave.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    .logo {
+        position: absolute;
+        left: 3vw;
+        width: 45vw;
+        top: 1vh;
+        height: 17vh;
+        img {
+            object-fit: contain;
+            width: 45vw;
+            height: 17vh; 
+            object-position: 50% 50%;
+        }
+    }
+
+    .roomlabel {
+        position: absolute;
+        left: 51vw;
+        right: 1vw;
+        top: 0;
+        height: 18vh;
+        width: 48vw;
+        font-size: 15vh;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+        color: white;
+    }
+
+    .roomname {
+        position: absolute;
+        left: 51vw;
+        top: 15vh;
+        width: 48vw;
+        height: 3vh;
+        text-align: center;
+        font-size: 2.5vh;
+        font-weight: bold;
+        margin: 0;
+        color: white;
+    }
+
+    .schedule {
+        color: #AAA;
+        position: absolute;
+        left: 0;
+        top: 20vh;
+        height: 90vh;
+        width: 100vw;
+        font-size: 3vh;
+        overflow: hidden;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                position: relative;
+                margin-bottom: 0.2em;
+                margin-left: 1em;
+                margin-right: 1em;
+
+                .time {
+                }
+                .name {
+                    color: white;
+                    font-weight: bold;
+                }
+                .summary {
+                    font-size: 1.5vh;
+                    margin-bottom: 1em;
+                }
+            }
+
+        }
+    }
+    .whoami {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 0.5em;
+        font-size: 1.25vh;
+        color: #555;
+        text-align: right;
+    }
+}

@@ -1,0 +1,19 @@
+<div class="eventschedule">
+  <div class="logo"><img src="/assets/logo.png"></div>
+  <div class="title">
+    Schedule
+  </div>
+  <div class="schedule">
+    <ul>
+      <li *ngFor="let event of schedule$" [ngClass]="{highlight: event.highlight=='yes'}">
+        <div class="schedule_label">{{ event.schedule_label }}</div>
+        <div class="name">{{ event.name }}</div>
+        <div class="time">{{ event.start | date:'shortTime' }} - {{ event.end | date:'shortTime' }}</div>
+      </li>
+    </ul>
+  </div>
+  <div class="whoami">
+    <div class="identity">id: {{ id | slice:-4}}</div>
+    <div class="version">version: {{ version }}</div>
+  </div>
+</div>
