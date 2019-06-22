@@ -29,6 +29,14 @@ export class RoomScheduleComponent implements OnInit, OnDestroy {
     this.name = this.route.snapshot.paramMap.get("name");
     this.route.paramMap.pipe(switchMap((params: ParamMap) => this.label = params.get("label")));
     this.route.paramMap.pipe(switchMap((params: ParamMap) => this.name = params.get("name")));
+
+    chrome.nfc.findDevices(function(devices) {
+      console.log("Found " + devices.length + " NFC device(s)");
+      for (var i = 0; i < devices.length; i++) {
+        var device = devices[i];
+        console.log(device.vendorId, device.productId);
+      }
+    });
   }
 
   ngOnInit() {
