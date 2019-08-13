@@ -1,5 +1,8 @@
 <div class="portal">
-  <div class="logo"><img src="/assets/logo.png"></div>
+  <div class="logo"><img src="/assets/logo-worldfandom.png"></div>
+  <div class="tokenform">
+    <input #tokenInput type="password" placeholder="TOKEN" (keyup.enter)="onEnterToken(tokenInput.value)" [ngClass]="{invalid: configError}">
+  </div>
   <div class="whoami">
     <div class="identity">id: {{ id | slice:-4 }}</div>
     <div class="version">version: {{ version }}</div>

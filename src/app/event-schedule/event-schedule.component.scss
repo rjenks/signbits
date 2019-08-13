@@ -17,7 +17,10 @@ div.eventschedule {
 
     font-family: sans-serif;
 
-    background: url('/assets/wavepattern.svg');
+    background: url('/assets/signbits-bg-oldmap.jpg');
+    background-size: cover;
+    background-color: #969696;
+    background-blend-mode: screen;
 
     .logo {
         position: absolute;
@@ -37,16 +40,14 @@ div.eventschedule {
         position: absolute;
         left: 34vw;
         right: 0;
-        top: 2.5vh;
+        top: 2.0vh;
         height: 7.5vh;
         font-size: 7vh;
         text-align: center;
         padding-right: 1vw;
-        color: white;
     }
 
     .schedule {
-        color: #AAA;
         position: absolute;
         left: 0;
         top: 12vh;
@@ -91,7 +92,6 @@ div.eventschedule {
             }
 
             li.highlight {
-                color: white;
                 font-weight: bold;
             }
         }

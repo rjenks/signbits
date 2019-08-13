@@ -13,8 +13,8 @@ export class EventScheduleComponent implements OnInit, OnDestroy {
 
   schedule$: Object;
   interval: any;
-  version: String = chrome.runtime.getManifest ? chrome.runtime.getManifest().version : '0.0.0';
-  id: String;
+  version: string = chrome.runtime.getManifest ? chrome.runtime.getManifest().version : '0.0.0';
+  id: string;
 
   constructor(
     private scheduleService: ScheduleService,
@@ -22,7 +22,7 @@ export class EventScheduleComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.storageService.getUUID((id) => {
+    this.storageService.getUUID().then(id => {
       this.id = id;
     });
     this.refreshSchedule();

@@ -20,8 +20,9 @@
     "@angular/platform-browser-dynamic": "^8.0.2",
     "@angular/router": "^8.0.2",
     "core-js": "^3.1.4",
-    "ng-inline-svg": "^8.5.0",
     "rxjs": "^6.5.2",
+    "service": "^0.1.4",
+    "sha.js": "^2.4.11",
     "zone.js": "^0.9.1"
   },
   "devDependencies": {

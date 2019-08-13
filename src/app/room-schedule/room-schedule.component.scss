@@ -17,11 +17,10 @@ div.eventschedule {
 
     font-family: sans-serif;
 
-    background: url('/assets/wave.png') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    background: url('/assets/signbits-bg-oldmap.jpg');
     background-size: cover;
+    background-color: #969696;
+    background-blend-mode: screen;
 
     .logo {
         position: absolute;
@@ -48,7 +47,6 @@ div.eventschedule {
         font-weight: bold;
         text-align: center;
         margin: 0;
-        color: white;
     }
 
     .roomname {
@@ -61,11 +59,9 @@ div.eventschedule {
         font-size: 2.5vh;
         font-weight: bold;
         margin: 0;
-        color: white;
     }
 
     .schedule {
-        color: #AAA;
         position: absolute;
         left: 0;
         top: 20vh;
@@ -88,7 +84,6 @@ div.eventschedule {
                 .time {
                 }
                 .name {
-                    color: white;
                     font-weight: bold;
                 }
                 .summary {
@@ -99,6 +94,7 @@ div.eventschedule {
 
         }
     }
+
     .whoami {
         position: absolute;
         right: 0;
@@ -108,4 +104,74 @@ div.eventschedule {
         color: #555;
         text-align: right;
     }
+
+    .toasts {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        .toast {
+            border: 1px solid black;
+            border-radius: 5px;
+            height: 0px;
+            width: 60vw;
+            font-size: 1.5vh;
+            margin: 0.25vh;
+            padding: 1vh;
+            float: right;
+            position: relative;
+            top: 2000px;
+            transition: all 0.5s ease-out;
+        }
+
+        %toast-show {
+            top: 0;
+            height: 8vh;
+        }
+
+        .toast .title {
+            font-size: 3vh;
+        }
+
+        .toast.allow {
+            @extend %toast-show;
+            background-color: #04af24;
+
+            .title:after {
+                content: 'Ahoy, Matey!';
+            }
+
+            .description:after {
+                content: 'Your pirate identification has been accepted.';
+            }
+        }
+
+        .toast.revoke {
+            @extend %toast-show;
+            background-color: #e10310;
+
+            .title:after {
+                content: 'Walk the plank!';
+            }
+
+            .description:after {
+                content: 'You are known to us, but not welcome aboard at this time.  Is your badge a one day badge for a different day?  Please check with Badge Support or HQ (for staff).';
+            }
+        }
+
+        .toast.unknown {
+            @extend %toast-show;
+            background-color: #f1c42b;
+
+            .title:after {
+                content: 'Avast Ye!';
+            }
+
+            .description:after {
+                content: 'Your pirate identification is unknown to us!  Is your badge from a prior year or a different event?';
+            }
+        }
+    }
+
 }

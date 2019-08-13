@@ -26,13 +26,24 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.json",
-              "src/background.js"
+              "src/background.js",
+              "src/chrome-nfc/b64.js",
+              "src/chrome-nfc/mifare-classic.js",
+              "src/chrome-nfc/ndef.js",
+              "src/chrome-nfc/nfc.js",
+              "src/chrome-nfc/devmanager.js",
+              "src/chrome-nfc/scl3711.js",
+              "src/chrome-nfc/sha256.js",
+              "src/chrome-nfc/tag.js",
+              "src/chrome-nfc/tt2.js",
+              "src/chrome-nfc/usb.js",
+              "src/chrome-nfc/util.js"
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": [
-              "src/chrome-nfc.js"
+
             ]
           },
           "configurations": {
@@ -45,7 +56,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,

@@ -5,7 +5,8 @@
     right: 0;
     bottom: 0;
     font-family: sans-serif;
-    background: url('/assets/wavepattern.svg');
+    background: url('/assets/signbits-bg-oldmap.jpg');
+    background-size: cover;
 }
 
 
@@ -21,6 +22,18 @@
         height: 50vh; 
         object-position: 50% 50%;
     }
+}
+
+.tokenform {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+    text-align: center;
+    
+}
+
+input.invalid {
+    background-color: lightcoral;
 }
 
 .whoami {
