@@ -2,6 +2,11 @@
 
 Signbits is a Chrome OS Kiosk App for digital signage at World Fandom events.  It is built using the Angular framework.  It will not run in a regular browser tab.  It uses Chrome APIs which require it to run as an App on a Chrome OS device.  Specifically we use Chromebit devices connected to large screen TVs in portrait orientation.
 
+The app has three modes:
+* Portal:  This is where it initially sits until it can successfully pull it's configuration down from the server.  It requires that a token be entered which is used as part of a signature protocol to securely communicate with the server.
+* Event Schedule: In this mode it displays the schedule for all rooms as one list in a smaller font
+* Room Schedule:  In this mode it displays the current and next couple of events for a particular room in a larger font.  It also allows for badge scanning using a connected ACR-122U NFC reader/writer.  It retrieves a list of allowed and revoked NFC tag ids from the server.  When an NFC tag is presented to the ACR-122U it will determine if it is in the allowed list and show a green message.  If it is on the revoked list, it shows a red message.  Otherwise it shows a yellow message indicating the badge is unknown.  It also reports successful badge scans to the server to track attendance at events.
+
 ## Development
 
 * Install NodeJS version 10.16 or greater and NPM version 6.10 or greater
