@@ -62,6 +62,7 @@ export class AccessService {
     }
 
     async addAccessLog(uid: string, location: string, block: number) {
+        console.log("addAccessLog", uid, location, block);
         let params = await this.getRequestParams();
         params = params.set('uid', uid);
         params = params.set('location', location);
@@ -69,7 +70,7 @@ export class AccessService {
             params.set('id_schedule_block', block.toString());
         }
         let options = { params: params };
-        return this.http.get('https://animefest.org/api/v1/access_log', options);
+        return this.http.get('https://animefest.org/api/v1/access_log', options).toPromise();
     }
 
 }

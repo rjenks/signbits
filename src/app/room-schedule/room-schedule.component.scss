@@ -19,7 +19,7 @@ div.eventschedule {
 
     background: url('/assets/signbits-bg-oldmap.jpg');
     background-size: cover;
-    background-color: #969696;
+    background-color: #222222;
     background-blend-mode: screen;
 
     .logo {
@@ -80,6 +80,9 @@ div.eventschedule {
                 margin-bottom: 0.2em;
                 margin-left: 1em;
                 margin-right: 1em;
+                background-color: rgba(255,255,255,0.5);
+                padding: 0.25em;
+                border-radius: 0.25em;
 
                 .time {
                 }

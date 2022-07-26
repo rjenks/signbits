@@ -1,7 +1,9 @@
 <div class="eventschedule">
-    <div class="logo"><img src="/assets/logo-worldfandom.png"></div>
+    <div class="logo">
+      <img [src]="logo">
+    </div>
     <div class="roomlabel">{{label}}</div>
-    <div class="roomname">FOO {{name}}</div>
+    <div class="roomname">{{name}}</div>
     <div class="schedule">
       <ul>
         <li *ngFor="let event of (schedule$ | scheduleLabel:label)" [ngClass]="{highlight: event.highlight=='yes'}">

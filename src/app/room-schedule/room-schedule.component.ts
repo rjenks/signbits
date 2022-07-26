@@ -21,21 +21,24 @@ interface Toast {
 })
 
 export class RoomScheduleComponent implements OnInit, OnDestroy {
-  label: String;
-  name: String;
+  label: string;
+  name: string;
+  logo: string;
   schedule$: Object;
   refreshScheduleInterval: any;
   refreshAccessInterval: any;
-  version: String = chrome.runtime.getManifest ? chrome.runtime.getManifest().version : '0.0.0';
-  id: String;
+  version: string = chrome.runtime.getManifest ? chrome.runtime.getManifest().version : '0.0.0';
+  id: string;
   lastUpdateTime: string = "0";
   allow: Set<string> = new Set<string>();
   revoke: Set<string> = new Set<string>();
   toasts: Toast[] = [];
   badgeInterval: any;
+  findDeviceInterval: any;
   nfcDevice: any;
   successSound: any;
   failureSound: any;
+  unknownSound: any;
 
   constructor(
     private scheduleService: ScheduleService, 
@@ -46,6 +49,17 @@ export class RoomScheduleComponent implements OnInit, OnDestroy {
   ) {
     this.label = this.route.snapshot.paramMap.get("label");
     this.name = this.route.snapshot.paramMap.get("name");
+    switch (this.label) {
+      case "GP":
+        this.logo = "/assets/logo-gamefest.png";
+        break;
+      case "DR":
+        this.logo = "/assets/logo-worldfandom.png";
+        break;
+      default:
+        this.logo = "/assets/logo-animefest.png";
+        break;
+    }
     this.route.paramMap.pipe(switchMap((params: ParamMap) => this.label = params.get("label")));
     this.route.paramMap.pipe(switchMap((params: ParamMap) => this.name = params.get("name")));
   }
@@ -65,23 +79,26 @@ export class RoomScheduleComponent implements OnInit, OnDestroy {
       this.refreshAccess();
     }, 5000);
 
-    setTimeout(() => {
-      chrome.nfc.findDevices((devices) => {
-        this.nfcDevice = devices[0];
-        console.log('Found NFC Reader:', this.nfcDevice.vendorId, this.nfcDevice.productId);
-        this.ref.detectChanges();
-        this.waitForBadge();
-      });  
+    this.findDeviceInterval = setInterval(() => {
+      if (!this.nfcDevice) {
+        console.log("Looking for NFC Devices");
+        chrome.nfc.findDevices((devices) => {
+          this.nfcDevice = devices[0];
+          console.log('Found NFC Reader:', this.nfcDevice.vendorId, this.nfcDevice.productId);
+          this.ref.detectChanges();
+          this.badgeInterval = setInterval(() => {
+            this.waitForBadge();
+          }, 300);
+        });
+      }
     }, 5000);
-    // this.badgeInterval = setInterval(() => {
-    //   this.readBadge();
-    // }, 5000);
 
-    this.successSound = new Audio('/assets/success.wav');
-    this.failureSound = new Audio('/assets/failure.wav');
+    this.successSound = new Audio('/assets/aye_matie.wav');
+    this.failureSound = new Audio('/assets/walk_the_plank.wav');
+    this.unknownSound = new Audio('/assets/avast.wav');
 
     // Add test badge
-    this.allow.add("1397879016868224");
+    this.revoke.add("1397879016868224");
   }
 
   ngOnDestroy() {
@@ -100,6 +117,10 @@ export class RoomScheduleComponent implements OnInit, OnDestroy {
   }
 
   addToast(uid: string, type: string) {
+    let idScheduleBlock = null;
+    try {
+      idScheduleBlock = this.schedule$[0]["id_schedule_block"];
+    } catch (e) {}
     let toast: Toast = {uid: uid, type: type};
     for (let i = 0; i < this.toasts.length; i++) {
       if (uid === this.toasts[i].uid) {
@@ -112,8 +133,11 @@ export class RoomScheduleComponent implements OnInit, OnDestroy {
     this.ref.detectChanges();
     if (type === 'allow') {
       this.successSound.play();
-    } else {
+      this.accessService.addAccessLog(uid, this.label, idScheduleBlock);
+    } else if (type === 'revoke') {
       this.failureSound.play();
+    } else {
+      this.unknownSound.play();
     }
     setTimeout(() => {
       this.toasts.shift();
@@ -137,7 +161,7 @@ export class RoomScheduleComponent implements OnInit, OnDestroy {
 
   waitForBadge() {
     if (this.nfcDevice) {
-      chrome.nfc.wait_for_tag(this.nfcDevice, 9999999, (tag_type, tag_id: ArrayBuffer) => {
+      chrome.nfc.wait_for_tag(this.nfcDevice, 250, (tag_type, tag_id: ArrayBuffer) => {
         if (tag_id) {
           let uid = this.tagToDecimalString(tag_id);
           let type = 'unknown';
@@ -149,8 +173,8 @@ export class RoomScheduleComponent implements OnInit, OnDestroy {
           console.log('found tag:', tag_type, tag_id, uid);
           this.addToast(uid, type);
         }
-        let timeout = tag_id ? 1300 : 250;
-        setTimeout(() => {this.waitForBadge();}, timeout);
+        // let timeout = tag_id ? 1300 : 250;
+        // setTimeout(() => {this.waitForBadge();}, timeout);
       });
     }
   }
