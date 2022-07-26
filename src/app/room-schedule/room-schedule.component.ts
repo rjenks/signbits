@@ -93,9 +93,9 @@ export class RoomScheduleComponent implements OnInit, OnDestroy {
       }
     }, 5000);
 
-    this.successSound = new Audio('/assets/aye_matie.wav');
-    this.failureSound = new Audio('/assets/walk_the_plank.wav');
-    this.unknownSound = new Audio('/assets/avast.wav');
+    this.successSound = new Audio('/assets/success.wav');
+    this.failureSound = new Audio('/assets/failure.wav');
+    this.unknownSound = new Audio('/assets/failure.wav');
 
     // Add test badge
     this.revoke.add("1397879016868224");
